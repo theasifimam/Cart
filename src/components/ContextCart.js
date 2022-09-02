@@ -5,7 +5,48 @@ import { CartContext } from "./Cart";
 import "./cart.css";
 
 const ContextCart = () => {
-  const { item } = useContext(CartContext);
+  const { item, clearCart } = useContext(CartContext);
+
+  if (item.length === 0) {
+    return (
+      <>
+        <header>
+          <div className="continue-shopping">
+            <img
+              src="./images/arrow.png"
+              alt="arrow png"
+              className="arrow-icon"
+            />
+            <h3>Continue Shopping</h3>
+          </div>
+
+          <div className="cart-icon">
+            <img src="./images/cart.png" alt="cart png " />
+            <p>0</p>
+          </div>
+        </header>
+
+        <section
+          className="main-cart-section"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h1>Shopping Cart</h1>
+          <p
+            className="total-items"
+            style={{ fontSize: "4rem", fontWeight: "bold" }}
+          >
+            You have <span className="total-items-count"> 0 </span> items in
+            Shopping Cart
+          </p>
+        </section>
+      </>
+    );
+  }
   return (
     <>
       <header>
@@ -46,6 +87,9 @@ const ContextCart = () => {
             Cart Total : <span>Rs 220000</span>
           </h3>
           <button>Check-out</button>
+          <button className="clear-cart" onClick={clearCart}>
+            Clear Cart
+          </button>
         </div>
       </section>
     </>

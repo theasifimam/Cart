@@ -14,14 +14,20 @@ const initialState = {
 const Cart = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // Delete Individual Element
   const removeItem = (id) => {
     return dispatch({
       type: "REMOVE_ITEM",
       payload: id,
     });
   };
+
+  // Clear the Cart
+  const clearCart = () => {
+    return dispatch({ type: "CLEAR_CART" });
+  };
   return (
-    <CartContext.Provider value={{ ...state, removeItem }}>
+    <CartContext.Provider value={{ ...state, removeItem, clearCart }}>
       <ContextCart />
     </CartContext.Provider>
   );
