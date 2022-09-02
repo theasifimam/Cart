@@ -1,5 +1,5 @@
 import ContextCart from "./ContextCart";
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 import { products } from "./products";
 import { reducer } from "./reducer";
 
@@ -42,6 +42,13 @@ const Cart = () => {
       payload: id,
     });
   };
+
+  // We will use the useEffect hook update data
+  useEffect(() => {
+    dispatch({ type: "GET_TOTAL" });
+    // console.log("Awesome");
+  }, [state.item]);
+
   return (
     <CartContext.Provider
       value={{ ...state, removeItem, clearCart, increment, decrement }}
