@@ -26,8 +26,26 @@ const Cart = () => {
   const clearCart = () => {
     return dispatch({ type: "CLEAR_CART" });
   };
+
+  // increment number of items
+  const increment = (id) => {
+    return dispatch({
+      type: "INCREMENT",
+      payload: id,
+    });
+  };
+
+  // decrement number of items
+  const decrement = (id) => {
+    return dispatch({
+      type: "DECREMENT",
+      payload: id,
+    });
+  };
   return (
-    <CartContext.Provider value={{ ...state, removeItem, clearCart }}>
+    <CartContext.Provider
+      value={{ ...state, removeItem, clearCart, increment, decrement }}
+    >
       <ContextCart />
     </CartContext.Provider>
   );

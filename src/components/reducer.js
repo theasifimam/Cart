@@ -15,5 +15,29 @@ export const reducer = (state, action) => {
     };
   }
 
+  if (action.type === "INCREMENT") {
+    const upadatedCart = state.item.map((curElem) => {
+      if (curElem.id === action.payload) {
+        return { ...curElem, quantity: curElem.quantity + 1 };
+      }
+      return curElem;
+    });
+
+    return { ...state, item: upadatedCart };
+  }
+
+  if (action.type === "DECREMENT") {
+    const upadatedCart = state.item
+      .map((curElem) => {
+        if (curElem.id === action.payload) {
+          return { ...curElem, quantity: curElem.quantity - 1 };
+        }
+        return curElem;
+      })
+      .filter((curElem) => curElem.quantity !== 0);
+
+    return { ...state, item: upadatedCart };
+  }
+
   return state;
 };
