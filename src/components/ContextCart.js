@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import Items from "./Items";
-import { cartContext } from "./Cart";
+import { CartContext } from "./Cart";
 import "./cart.css";
 
 const ContextCart = () => {
-  const item = useContext(cartContext);
+  const { item } = useContext(CartContext);
   return (
     <>
       <header>

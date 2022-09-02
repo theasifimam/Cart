@@ -1,15 +1,29 @@
 import ContextCart from "./ContextCart";
 import { createContext, useReducer } from "react";
 import { products } from "./products";
+import { reducer } from "./reducer";
 
-export const cartContext = createContext();
+export const CartContext = createContext();
+
+const initialState = {
+  item: products,
+  totalAmount: 0,
+  totalItems: 0,
+};
 
 const Cart = () => {
-  const [state, dispatch] = useReducer(first, second, third);
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const removeItem = (id) => {
+    return dispatch({
+      type: "REMOVE_ITEM",
+      payload: id,
+    });
+  };
   return (
-    <cartContext.Provider value={products}>
+    <CartContext.Provider value={{ ...state, removeItem }}>
       <ContextCart />
-    </cartContext.Provider>
+    </CartContext.Provider>
   );
 };
 
